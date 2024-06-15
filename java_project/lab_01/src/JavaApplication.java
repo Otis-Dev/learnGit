@@ -11,7 +11,6 @@ public class JavaApplication {
         switch (choice) {
             case 1:
                 emp.input();
-                emp.output();
                 break;
             case 2:
                 emp.output();
