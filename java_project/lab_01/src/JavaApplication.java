@@ -9,7 +9,7 @@ class Menu {
             try{
                 System.out.println("----- EMPLOYEE MANAGEMENT -----");
                 System.out.println("1. Adds new employee.");
-                System.out.println("2. Shows all employees. \n3. Quit. \nPlease select a function: ");
+                System.out.print("2. Shows all employees. \n3. Quit. \nPlease select a function: ");
                 int choice = sc.nextInt();
                 switch (choice) {
                     case 1:
