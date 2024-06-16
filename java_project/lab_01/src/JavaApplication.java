@@ -17,7 +17,9 @@ class Menu {
                         break;
                     case 2:
                         emp.output();
+                        break;
                     case 3:
+                        System.out.println("BYE");
                         System.exit(0);
                     default:
                         System.err.println("Invalid choice");

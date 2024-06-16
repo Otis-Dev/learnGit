@@ -49,12 +49,17 @@ public class Employee {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter Employee ID: ");
         id = sc.nextLine();
-        System.out.print("\nEnter Employee Full Name: ");
+        System.out.print("Enter Employee Full Name: ");
         fullName = sc.nextLine();
-        System.out.print("\nEnter Employee Year Of Birth: ");
+        System.out.print("Enter Employee Year Of Birth: ");
         yearOfBirth = sc.nextInt();
-        System.out.print("\nEnter Employee Salary: ");
+        System.out.print("Enter Employee Salary: ");
         salary = sc.nextInt();
+    }
+
+    public int checkInput(int check){
+
+        return check;
     }
 
     public void output(){
