@@ -4,6 +4,8 @@ class Menu {
     Employee emp = new Employee();
     Scanner sc = new Scanner(System.in);
 
+
+
     public Menu() {
         do{
             try{
