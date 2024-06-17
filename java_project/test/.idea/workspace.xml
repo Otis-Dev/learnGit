@@ -5,16 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c552841-c714-4d54-ae8d-207f30cbe2e0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../lab_01/src/JavaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab_01/src/JavaApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/test/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/test/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/out/production/test/Main.class" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -31,7 +39,7 @@
     "git-widget-placeholder": "staging",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "//wsl.localhost/Ubuntu-20.04/home/otis_wsl/myRepo/java_project/test",
+    "last_opened_file_path": "//wsl.localhost/Ubuntu-20.04/home/otis_wsl/myRepo/java_project/lab_01",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -39,8 +47,8 @@
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "//wsl.localhost/Ubuntu-20.04/home/otis_wsl/myRepo/java_project/test/src/Main.java",
     "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "project.propCompiler",
     "vue.rearranger.settings.migration": "true"
   }
@@ -50,6 +58,7 @@
       <option name="ALTERNATIVE_JRE_PATH" value="22 (WSL)" />
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="test" />
+      <target name="WSL - Ubuntu-20.04" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -76,6 +85,7 @@
       <workItem from="1718518160783" duration="527000" />
       <workItem from="1718587861760" duration="118000" />
       <workItem from="1718587991890" duration="124000" />
+      <workItem from="1718588216723" duration="4807000" />
     </task>
     <servers />
   </component>
