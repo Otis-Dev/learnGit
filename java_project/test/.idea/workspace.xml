@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c552841-c714-4d54-ae8d-207f30cbe2e0" name="Changes" comment="" />
+    <list default="true" id="0c552841-c714-4d54-ae8d-207f30cbe2e0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../lab_01/src/JavaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab_01/src/JavaApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,7 +28,8 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "staging",
+    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "//wsl.localhost/Ubuntu-20.04/home/otis_wsl/myRepo/java_project/test",
     "node.js.detected.package.eslint": "true",
@@ -34,13 +38,16 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "//wsl.localhost/Ubuntu-20.04/home/otis_wsl/myRepo/java_project/test/src/Main.java",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "project.propCompiler",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="22 (WSL)" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="test" />
       <method v="2">
@@ -67,6 +74,8 @@
       <workItem from="1718483150747" duration="48000" />
       <workItem from="1718483383150" duration="1748000" />
       <workItem from="1718518160783" duration="527000" />
+      <workItem from="1718587861760" duration="118000" />
+      <workItem from="1718587991890" duration="124000" />
     </task>
     <servers />
   </component>

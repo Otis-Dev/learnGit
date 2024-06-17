@@ -1,10 +1,6 @@
-import java.util.Scanner;
 
 class Menu {
     Employee emp = new Employee();
-    Scanner sc = new Scanner(System.in);
-
-
 
     public Menu() {
         do{
@@ -12,7 +8,7 @@ class Menu {
                 System.out.println("----- EMPLOYEE MANAGEMENT -----");
                 System.out.println("1. Adds new employee.");
                 System.out.print("2. Shows all employees. \n3. Quit. \nPlease select a function: ");
-                int choice = sc.nextInt();
+                int choice = emp.checkInt();
                 switch (choice) {
                     case 1:
                         emp.input();
