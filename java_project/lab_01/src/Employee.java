@@ -1,3 +1,4 @@
+import java.time.Year;
 import java.util.Scanner;
 
 public class Employee {
@@ -45,6 +46,12 @@ public class Employee {
         this.salary = salary;
     }
 
+    public int getAge() {
+        int currentYear = Year.now().getValue();
+        return currentYear - yearOfBirth;
+    }
+
+
     public int checkInt(){
         do{
             try {
@@ -71,8 +78,6 @@ public class Employee {
     }
 
     public void output(){
-        System.out.println("--- List of employee ---");
-        System.out.println("- No. -- ID -- Employee name -- Year Of Birth -- Salary -");
         System.out.println("- " + id + " -- " + fullName + " -- " + yearOfBirth + " -- " + salary +" -");
     }
 }
