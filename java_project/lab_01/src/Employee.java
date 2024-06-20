@@ -51,20 +51,6 @@ public class Employee {
         return currentYear - yearOfBirth;
     }
 
-
-    public int checkInt(){
-        do{
-            try {
-                Scanner sc = new Scanner(System.in);
-                String check = sc.nextLine().trim().replaceAll("\\s+", "");
-                int num = Integer.parseInt(check);
-                return num;
-            } catch ( NumberFormatException e){
-                System.err.println("Please enter a valid number.");
-            }
-        }while (true);
-    }
-
     public void input(){
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter Employee ID: ");
@@ -72,9 +58,9 @@ public class Employee {
         System.out.print("Enter Employee Full Name: ");
         fullName = sc.nextLine();
         System.out.print("Enter Employee Year Of Birth: ");
-        yearOfBirth = checkInt();
+        yearOfBirth = Function.checkInt();
         System.out.print("Enter Employee Salary: ");
-        salary = checkInt();
+        salary = Function.checkInt();
     }
 
     public void output(){
