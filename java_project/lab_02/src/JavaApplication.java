@@ -10,7 +10,7 @@ class Menu{
             System.out.println("2. Show all ebook");
             System.out.println("3. The biggest size ebook.");
             System.out.println("4. Quit");
-            System.out.println("Please select a function: ");
+            System.out.print("Please select a function: ");
             int choice = function.checkInt();
             switch(choice){
                 case 1:
@@ -28,7 +28,18 @@ class Menu{
                     }
                     break;
                 case 3:
-                    System.out.println("nothing");
+                    if(!ebooks.isEmpty()){
+                        EBook biggestSize = ebooks.get(0);
+                        for (EBook eb : ebooks) {
+                            if(eb.getSize() > biggestSize.getSize()){
+                                biggestSize = eb;
+                            }
+                        }
+                        System.out.println("----- List of the biggest size ebooks -----");
+                        biggestSize.output();
+                    } else{
+                        System.out.println("No ebooks in the list.");
+                    }
                     break;
                 case 4:
                     System.out.println("THANK YOU FOR USING OUR APPLICATION!");

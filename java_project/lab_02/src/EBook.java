@@ -2,6 +2,13 @@ public class EBook extends Book {
     private String URL;
     private int size;
 
+
+    public EBook() {
+        super();
+        this.URL = "";
+        this.size = 0;
+    }
+
     public String getURL() {
         return URL;
     }
