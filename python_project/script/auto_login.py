@@ -91,7 +91,7 @@ def change_dns_tenten():
     
 if __name__ == "__main__":
     if check_ip_public():
-       log_message("IP not change")
+        log_message("IP not change")
     else:
         log_message("IP changed -> Starting update DNS")
         change_dns_tenten()
