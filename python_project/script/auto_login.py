@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 # Create a file handler
-file_handler = logging.FileHandler('update_DNS.log')
+file_handler = logging.FileHandler('/home/otis_wsl/update_DNS.log')
 # file_handler.setFormatter(logging.Formatter('[{datetime.datetime.now()}] {message}'))
 
 # Add the file handler to the logger
