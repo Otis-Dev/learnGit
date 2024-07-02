@@ -3,11 +3,8 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
-import time
-import os 
-import subprocess
-import logging
 from datetime import datetime
+import time, os, subprocess, logging
 
 USR_TENTEN = os.getenv("USR_TENTEN")
 PWD_TENTEN = os.getenv("PWD_TENTEN")
@@ -20,7 +17,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 # Create a file handler
-file_handler = logging.FileHandler('router_checks.log')
+file_handler = logging.FileHandler('update_DNS.log')
 # file_handler.setFormatter(logging.Formatter('[{datetime.datetime.now()}] {message}'))
 
 # Add the file handler to the logger
