@@ -9,6 +9,7 @@ import time, os, subprocess, logging
 USR_TENTEN = os.getenv("USR_TENTEN")
 PWD_TENTEN = os.getenv("PWD_TENTEN")
 IP_TENTEN = os.getenv("IP_TENTEN")
+GET_IP_PUB = subprocess.run(["curl", "icanhazip.com"],capture_output=True, text=True)
 
 # Create a logger
 logger = logging.getLogger(__name__)
@@ -31,7 +32,6 @@ def log_error(message):
     logger.error(f"[{datetime.now()}] {message}")
 
 def check_ip_public():
-    GET_IP_PUB = subprocess.run(["curl", "icanhazip.com"],capture_output=True, text=True)
     if IP_TENTEN.find(GET_IP_PUB.stdout):
         return True
     else:
@@ -69,22 +69,19 @@ def change_dns_tenten():
             time.sleep(2)
             driver.find_element(By.CLASS_NAME, "w_res_input").clear()
             ip_tenten = driver.find_element(By.CLASS_NAME, "w_res_input")
-            ip_tenten.send_keys(ip)
+            ip_tenten.send_keys(GET_IP_PUB.stdout)
             time.sleep(2)
             driver.find_element(By.CLASS_NAME, "save_changed ").click()
             log_message("Step 4: Change success!")
             time.sleep(60)
         else:
             log_error("Login failed")
-    
    
-    except exception as E:
+    except Exception as E:
         log_error(E)
     finally:
         log_message("Step 5: All done. Close browser")
         driver.quit() 
-
-
     
 if __name__ == "__main__":
     if check_ip_public():
