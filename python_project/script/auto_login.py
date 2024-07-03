@@ -71,7 +71,7 @@ def change_dns_tenten():
             ip_tenten = driver.find_element(By.CLASS_NAME, "w_res_input")
             ip_tenten.send_keys(GET_IP_PUB.stdout)
             time.sleep(2)
-            driver.find_element(By.CLASS_NAME, "save_changed ").click()
+            driver.find_element(By.CLASS_NAME, "save_changed").click()
             log_message("Step 4: Change success!")
             time.sleep(60)
         else:

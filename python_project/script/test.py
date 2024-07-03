@@ -8,7 +8,7 @@ from os import getenv
 
 USR_TENTEN = getenv('USR_TENTEN')
 PWD_TENTEN = getenv('PWD_TENTEN')
-ip = "27.65.60.21"
+ip = "10.10.1.20"
 # Configure Chrome Options (Optional)
 options = Options()
 
@@ -29,8 +29,12 @@ service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service, options=options)
 
 # Open a Website
-url = 'https://domain.tenten.vn/ApiDnsSetting'
+url = 'https://domain.tenten.vn/ApiDnsSetting'  # Replace with the desired URL
 driver.get(url)
+
+# Perform Actions (Example: Get the title of the page)
+page_title = driver.title
+print(f"Page title: {page_title}")
 time.sleep(1)
 username = driver.find_element(By.NAME, "username")
 username.send_keys(USR_TENTEN)
@@ -38,8 +42,16 @@ passwd = driver.find_element(By.NAME, "password")
 passwd.send_keys(PWD_TENTEN)
 driver.find_element(By.NAME, "submit").click()
 time.sleep(10)
-page_title = driver.title
-if page_title.find("DNS"):
-    print("SUCCESS")
-driver.quit()
+print("Success")
+
+driver.find_element(By.CLASS_NAME, "e_edit_record").click()
+time.sleep(2)
+driver.find_element(By.CLASS_NAME, "w_res_input").clear()
+ip_tenten = driver.find_element(By.CLASS_NAME, "w_res_input")
+ip_tenten.send_keys(ip)
+time.sleep(2)
+driver.find_element(By.CLASS_NAME, "save_changed").click()
+time.sleep(60)
+# Close the Browser
+driver.quit()   
 
