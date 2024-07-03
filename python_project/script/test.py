@@ -1,57 +1,82 @@
+import os, time
+import subprocess
+import logging
+import datetime
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
-import time
-from os import getenv
+from selenium.common.exceptions import WebDriverException
 
-USR_TENTEN = getenv('USR_TENTEN')
-PWD_TENTEN = getenv('PWD_TENTEN')
-ip = "10.10.1.20"
-# Configure Chrome Options (Optional)
-options = Options()
 
-# -- Headless Mode (Uncomment to run Chrome without a visible window)
-# options.add_argument('--headless')
-# options.add_argument('--disable-gpu') 
+# Environment variables (best practice: store credentials securely)
+USR_TENTEN = os.environ.get("USR_TENTEN")
+PWD_TENTEN = os.environ.get("PWD_TENTEN")
+IP_TENTEN = os.environ.get("IP_TENTEN")
 
-# -- Disable Sandboxing (For special environments)
-# options.add_argument('--no-sandbox')
-# options.add_argument('--disable-dev-shm-usage')
+# Logging setup
+logging.basicConfig(filename='/home/otis_wsl/second_DNS.log', level=logging.INFO,
+                    format="%(asctime)s - %(levelname)s - %(message)s")
 
-# -- Set User Agent (Mimic a specific browser)
-# user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-# options.add_argument(f'user-agent={user_agent}')
+# Website URLs
+url = 'https://domain.tenten.vn/ApiDnsSetting'
 
-# Start the Chrome WebDriver (Automatic download if needed)
-service = Service(ChromeDriverManager().install())
-driver = webdriver.Chrome(service=service, options=options)
+def get_public_ip():
+    """Fetches the current public IP address."""
+    result = subprocess.run(["curl", "icanhazip.com"], capture_output=True, text=True)
+    return result.stdout.strip()
 
-# Open a Website
-url = 'https://domain.tenten.vn/ApiDnsSetting'  # Replace with the desired URL
-driver.get(url)
+def check_ip_changed(new_ip):
+    """Compares the new IP with the stored IP and updates if different."""
+    if new_ip != IP_TENTEN:
+        with open("my_var.sh", "w") as file:
+            file.write(f'#!/bin/bash\nexport IP_TENTEN="{new_ip}"\n')
+        return True
+    return False
 
-# Perform Actions (Example: Get the title of the page)
-page_title = driver.title
-print(f"Page title: {page_title}")
-time.sleep(1)
-username = driver.find_element(By.NAME, "username")
-username.send_keys(USR_TENTEN)
-passwd = driver.find_element(By.NAME, "password")
-passwd.send_keys(PWD_TENTEN)
-driver.find_element(By.NAME, "submit").click()
-time.sleep(10)
-print("Success")
+def change_dns_tenten(new_ip):
+    """Logs into the DNS provider's website and updates the DNS record."""
+    # Initialize webdriver
+    options = Options()
+    service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=options)
+    try:
+        driver.get(url)
+        time.sleep(1)
+        driver.find_element(By.NAME, "username").send_keys(USR_TENTEN)
+        driver.find_element(By.NAME, "password").send_keys(PWD_TENTEN)
+        driver.find_element(By.NAME, "submit").click()
+        time.sleep(10)
 
-driver.find_element(By.CLASS_NAME, "e_edit_record").click()
-time.sleep(2)
-driver.find_element(By.CLASS_NAME, "w_res_input").clear()
-ip_tenten = driver.find_element(By.CLASS_NAME, "w_res_input")
-ip_tenten.send_keys(ip)
-time.sleep(2)
-driver.find_element(By.CLASS_NAME, "save_changed").click()
-time.sleep(60)
-# Close the Browser
-driver.quit()   
+        # Wait for the page to load (better to use explicit waits here)
+        if "DNS" in driver.title:
+            logging.info("Login successful. Changing DNS...")
+            driver.find_element(By.CLASS_NAME, "e_edit_record").click()
+            time.sleep(2)
+            ip_input = driver.find_element(By.CLASS_NAME, "w_res_input")
+            ip_input.clear()
+            ip_input.send_keys(new_ip)
+            driver.find_element(By.CLASS_NAME, "save_changed").click()
+            logging.info("DNS change successful!")
+            time.sleep(20)
+        else:
+            logging.error("Login failed.")
 
+    except WebDriverException as e:
+        logging.error(f"Error during DNS change: {e}")
+    finally:
+        driver.quit()
+
+def main():
+    """Main function to orchestrate the script."""
+
+    new_ip = get_public_ip()
+    if check_ip_changed(new_ip):
+        logging.info("IP changed. Updating DNS...")
+        change_dns_tenten(new_ip)
+    else:
+        logging.info("IP not changed.")
+
+if __name__ == "__main__":
+    main()
