@@ -1,7 +1,6 @@
 import os, time
 import subprocess
 import logging
-import datetime
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
@@ -16,7 +15,7 @@ PWD_TENTEN = os.environ.get("PWD_TENTEN")
 IP_TENTEN = os.environ.get("IP_TENTEN")
 
 # Logging setup
-logging.basicConfig(filename='/home/otis_wsl/update_DNS.log', level=logging.INFO,
+logging.basicConfig(filename='/home/otis_wsl/update_DNS.log', level=logging.DEBUG,
                     format="%(asctime)s - %(levelname)s - %(message)s")
 
 # Website URLs
@@ -30,18 +29,18 @@ def get_public_ip():
 def check_ip_changed(new_ip):
     """Compares the new IP with the stored IP and updates if different."""
     if new_ip != IP_TENTEN:
-        with open("my_var.sh", "w") as file:
-            file.write(f'#!/bin/bash\nexport IP_TENTEN="{new_ip}"\n')
+        with open("/home/otis_wsl/myRepo/python_project/script/my_var.sh", "w") as file:
+            file.write(f'#!/bin/bash\nexport DISPLAY=:0\nexport IP_TENTEN="{new_ip}"\n')
         return True
     return False
 
 def change_dns_tenten(new_ip):
     """Logs into the DNS provider's website and updates the DNS record."""
-    # Initialize webdriver
-    options = Options()
-    service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service, options=options)
     try:
+        # Initialize webdriver
+        options = Options()
+        service = Service(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=service, options=options)
         driver.get(url)
         time.sleep(1)
         driver.find_element(By.NAME, "username").send_keys(USR_TENTEN)
@@ -53,13 +52,12 @@ def change_dns_tenten(new_ip):
         if "DNS" in driver.title:
             logging.info("Login successful. Changing DNS...")
             driver.find_element(By.CLASS_NAME, "e_edit_record").click()
-            time.sleep(2)
-            ip_input = driver.find_element(By.CLASS_NAME, "w_res_input")
-            ip_input.clear()
-            ip_input.send_keys(new_ip)
+            time.sleep(1)
+            driver.find_element(By.CLASS_NAME, "w_res_input").clear()
+            driver.find_element(By.CLASS_NAME, "w_res_input").send_keys(new_ip)
             driver.find_element(By.CLASS_NAME, "save_changed").click()
             logging.info("DNS change successful!")
-            time.sleep(20)
+            time.sleep(10)
         else:
             logging.error("Login failed.")
 
