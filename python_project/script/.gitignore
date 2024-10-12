@@ -1,7 +1,2 @@
 my_var.sh
-chromedriver-linux64/*
-google-chrome-stable_current_amd64.deb
-router_checks.log
-chromedriver-linux64.zip
-get-pip.py
-update_DNS.log
+autologin

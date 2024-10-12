@@ -1,6 +1,4 @@
-import os, time
-import subprocess
-import logging
+import os, time, subprocess, logging
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
@@ -30,7 +28,7 @@ def check_ip_changed(new_ip):
     """Compares the new IP with the stored IP and updates if different."""
     if new_ip != IP_TENTEN:
         with open("/home/otis_wsl/myRepo/python_project/script/my_var.sh", "w") as file:
-            file.write(f'#!/bin/bash\nexport DISPLAY=:0\nexport IP_TENTEN="{new_ip}"\n')
+            file.write(f'#!/bin/bash\nexport IP_TENTEN="{new_ip}"\n')
         return True
     return False
 
